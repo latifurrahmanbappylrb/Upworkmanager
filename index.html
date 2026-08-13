@@ -10,19 +10,25 @@
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="google-site-verification" content="3MwhsTbzqfGjYJy7sHVliQ_ud7ef5YwMBXL_BYM3zpA" />
 <link rel="canonical" href="https://upworkmanager.com/">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon.png">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://upworkmanager.com/">
-<meta property="og:title" content="Podcast Marketing & Promotion Expert | Apple & Spotify Ranking">
-<meta property="og:description" content="Grow your podcast to 50K–1M+ monthly downloads. Top 1–20 category ranking on Apple Podcasts & Spotify. Professional podcast marketing agency.">
+<meta property="og:title" content="Stop Uploading. Start Ranking. | Podcast Marketing">
+<meta property="og:description" content="50K–1M+ downloads. Top 1–20 category ranking on Apple Podcasts & Spotify. Professional podcast growth by Upwork Manager.">
+<meta property="og:image" content="https://upworkmanager.com/og-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:site_name" content="Upwork Manager">
 <meta property="og:locale" content="en_US">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Podcast Marketing & Promotion Expert | Upwork Manager">
-<meta name="twitter:description" content="Professional podcast growth, ranking & promotion. Apple Podcasts + Spotify specialists.">
+<meta name="twitter:title" content="Stop Uploading. Start Ranking.">
+<meta name="twitter:description" content="50K–1M+ downloads · Top 1–20 on Apple Podcasts & Spotify">
+<meta name="twitter:image" content="https://upworkmanager.com/og-share.jpg">
 
 <!-- Schema.org JSON-LD -->
 <script type="application/ld+json">
@@ -464,7 +470,7 @@ footer{background:var(--forest); color:var(--cream-dim); border-top:1px solid rg
       <p class="hero-sub">Upwork Manager — Podcast Growth & Promotion Expert (Top 1% on a leading international freelance platform). 3+ years managing social media for Mick Hunt (Mick Unplugged) and other creators. I help podcasters grow toward 50K–1M+ monthly downloads, improve Apple Podcasts & Spotify rankings, and make their shows more attractive to sponsors.</p>
       <div class="hero-actions">
         <a href="https://wa.me/8801316918298" target="_blank" rel="noopener" class="btn btn-fill magnetic" data-magnetic>Chat on WhatsApp</a>
-        <a href="#portfolio" class="btn btn-line magnetic" data-magnetic>See the Results</a>
+        <a href="https://www.upwork.com/freelancers/latifurrahmanbappy" target="_blank" rel="noopener" class="btn btn-line magnetic" data-magnetic>Hire on Upwork</a>
       </div>
       <div class="hero-stats">
         <div class="hero-stat"><div class="v">100K–2M+</div><div class="l">MONTHLY DOWNLOADS ACHIEVED</div></div>
@@ -901,7 +907,7 @@ document.getElementById('priceRow').innerHTML = CONFIG.pricing.map(t=>`
     <ul class="price-list">${t.items.map(i=>`<li>${i}</li>`).join('')}</ul>
     <div class="price-btns">
       <a href="https://wa.me/8801316918298?text=${encodeURIComponent('Hi, I want to Chat to Order the '+t.name+' package')}" target="_blank" rel="noopener" class="btn btn-line">Chat to Order</a>
-      <a href="https://wa.me/8801316918298?text=${encodeURIComponent('Hi, I want to Order Now: '+t.name+' — '+t.price)}" target="_blank" rel="noopener" class="btn ${t.mid||t.test?'btn-fill':'btn-line'}">Order Now</a>
+      <a href="${t.test ? 'https://link.payoneer.com/Token?t=0A96D6DE75AD4A18B5FBACF5180CA897&src=mobile' : 'https://wa.me/8801316918298?text='+encodeURIComponent('Hi, I want to Order Now: '+t.name+' — '+t.price)}" target="_blank" rel="noopener" class="btn ${t.mid||t.test?'btn-fill':'btn-line'}">Order Now</a>
     </div>
   </div>`).join('');
 
