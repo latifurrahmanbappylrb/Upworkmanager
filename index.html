@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upwork Manager — Podcast Growth, Ranking & SEO</title>
+<meta name="description" content="Podcast growth, category ranking, SEO, cross-promotion and social media marketing. Latifur Rahman Bappy — Upwork Manager.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+:root{
+  --cream:#f5efe2;
+  --paper:#fbf8f1;
+  --ink:#15140f;
+  --ink-dim:#615c4d;
+  --ink-faint:#a29b86;
+  --line: rgba(21,20,15,0.13);
+  --line-strong: rgba(21,20,15,0.24);
+  --gold:#a97b25;
+  --gold-bright:#c99a3d;
+  --forest:#132e23;
+  --forest-2:#1c3d2f;
+  --rust:#9c4322;
+  --cream-dim: rgba(245,239,226,0.68);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{background:var(--cream);}
+body{
+  background:var(--cream); color:var(--ink); font-family:'Inter',sans-serif; font-weight:400;
+  overflow-x:hidden; -webkit-font-smoothing:antialiased; cursor:default;
+}
+a{color:inherit; text-decoration:none;}
+::selection{background:var(--forest); color:var(--cream);}
+.wrap{max-width:1240px; margin:0 auto; padding:0 44px;}
+.serif{font-family:'Fraunces',serif;}
+.mono{font-family:'JetBrains Mono',monospace;}
+h1,h2,h3{font-family:'Fraunces',serif; font-weight:500; letter-spacing:-0.01em;}
+@media (prefers-reduced-motion: reduce){ *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;} }
+
+/* ---------- Custom cursor ---------- */
+.cursor-dot, .cursor-ring{position:fixed; top:0; left:0; pointer-events:none; z-index:999; border-radius:50%; transform:translate(-50%,-50%);}
+.cursor-dot{width:6px; height:6px; background:var(--ink); }
+.cursor-ring{width:36px; height:36px; border:1px solid var(--line-strong); transition:width 0.3s, height 0.3s, border-color 0.3s, background 0.3s;}
+.cursor-ring.hover{width:64px; height:64px; background:rgba(21,20,15,0.05); border-color:var(--ink);}
+@media (pointer:coarse){ .cursor-dot,.cursor-ring{display:none;} }
+
+/* ---------- Curtain load reveal ---------- */
+.curtain{position:fixed; inset:0; z-index:998; background:var(--forest); pointer-events:none;}
+
+/* ---------- Progress rail ---------- */
+.progress-rail{position:fixed; top:0; left:0; right:0; height:2px; z-index:200; background:transparent;}
+.progress-fill{height:100%; width:0%; background:var(--gold);}
+
+/* ---------- Header ---------- */
+header{position:fixed; top:0; left:0; right:0; z-index:150; padding:30px 0; mix-blend-mode:difference;}
+header .wrap{display:flex; align-items:center; justify-content:space-between;}
+.brand{font-family:'Fraunces',serif; font-weight:500; font-size:1.05rem; color:var(--cream); display:flex; align-items:center; gap:10px;}
+.brand-mark{width:7px; height:7px; border-radius:50%; background:var(--gold-bright);}
+.nav-links{display:flex; gap:40px; font-family:'JetBrains Mono',monospace; font-size:0.78rem; letter-spacing:0.05em; color:var(--cream);}
+.nav-links a{opacity:0.75; transition:opacity 0.3s;}
+.nav-links a:hover{opacity:1;}
+.nav-cta{font-family:'JetBrains Mono',monospace; font-size:0.78rem; color:var(--cream); border-bottom:1px solid var(--cream); padding-bottom:2px;}
+@media (max-width:900px){ .nav-links{display:none;} }
+
+/* ---------- Hero (dark forest panel) ---------- */
+.hero{
+  background:var(--forest); color:var(--cream); position:relative; min-height:100vh;
+  display:flex; flex-direction:column; justify-content:center; padding-top:140px; overflow:hidden;
+}
+.hero::before{
+  content:''; position:absolute; inset:0;
+  background-image:radial-gradient(circle at 15% 20%, rgba(201,154,61,0.14), transparent 45%), radial-gradient(circle at 85% 80%, rgba(201,154,61,0.08), transparent 50%);
+}
+.hero-grain{position:absolute; inset:0; opacity:0.05; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.hero-inner{position:relative; z-index:2;}
+.hero-eyebrow{
+  font-family:'JetBrains Mono',monospace; font-size:0.76rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold-bright);
+  display:block; margin-bottom:30px; overflow:hidden;
+}
+.hero h1{
+  font-size:clamp(2.6rem, 6.6vw, 6rem); font-weight:400; line-height:1.02; max-width:1100px;
+}
+.hero h1 .word{display:inline-block; overflow:hidden; vertical-align:top;}
+.hero h1 .word span{display:inline-block;}
+.hero h1 em{font-style:italic; color:var(--gold-bright); font-weight:400;}
+.hero-sub{
+  margin-top:36px; max-width:540px; font-size:1.08rem; line-height:1.75; color:var(--cream-dim); font-weight:300;
+}
+.hero-actions{margin-top:50px; display:flex; gap:20px; flex-wrap:wrap; align-items:center;}
+.btn{
+  font-family:'JetBrains Mono',monospace; font-size:0.82rem; letter-spacing:0.03em; padding:16px 30px; border-radius:100px;
+  display:inline-flex; align-items:center; gap:10px; position:relative;
+}
+.btn-fill{background:var(--gold-bright); color:var(--forest); font-weight:500;}
+.btn-line{border:1px solid var(--line-strong); color:var(--ink);}
+.hero .btn-line{border-color:rgba(245,239,226,0.35); color:var(--cream);}
+.magnetic{transition:transform 0.15s ease-out;}
+
+.hero-stats{
+  margin-top:70px; display:flex; gap:0; border-top:1px solid rgba(245,239,226,0.16); padding-top:30px; max-width:820px; flex-wrap:wrap;
+}
+.hero-stat{padding-right:48px; margin-right:48px; border-right:1px solid rgba(245,239,226,0.16);}
+.hero-stat:last-child{border-right:none;}
+.hero-stat .v{font-family:'Fraunces',serif; font-size:1.7rem; color:var(--gold-bright);}
+.hero-stat .l{font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:var(--cream-dim); margin-top:6px; letter-spacing:0.04em;}
+
+/* ---------- Marquee bands ---------- */
+.marquee-band{
+  background:var(--gold-bright); color:var(--forest); padding:18px 0; overflow:hidden; position:relative;
+  border-top:1px solid var(--forest); border-bottom:1px solid var(--forest);
+}
+.marquee-track{display:flex; width:max-content; animation:marqueeScroll 26s linear infinite;}
+@keyframes marqueeScroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+.marquee-item{
+  font-family:'Fraunces',serif; font-style:italic; font-size:1.3rem; padding:0 34px; white-space:nowrap; display:flex; align-items:center; gap:34px;
+}
+.marquee-item::after{content:'—'; font-family:'Inter',sans-serif; font-style:normal; opacity:0.5;}
+
+.platform-band{background:var(--paper); border-bottom:1px solid var(--line); padding:26px 0; overflow:hidden;}
+.platform-label{font-family:'JetBrains Mono',monospace; font-size:0.72rem; letter-spacing:0.1em; color:var(--ink-faint); text-transform:uppercase; margin-bottom:16px; display:block;}
+.platform-track{display:flex; width:max-content; animation:marqueeScroll 32s linear infinite reverse;}
+.platform-item{padding:0 36px; font-family:'Fraunces',serif; font-size:1.1rem; color:var(--ink-faint); white-space:nowrap; border-right:1px solid var(--line); transition:color 0.3s;}
+.platform-item:hover{color:var(--ink);}
+
+/* ---------- Section shared ---------- */
+section{position:relative;}
+.section-pad{padding:150px 0;}
+.section-label{
+  font-family:'JetBrains Mono',monospace; font-size:0.74rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold);
+  display:flex; align-items:center; gap:12px; margin-bottom:24px;
+}
+.section-label::before{content:''; width:26px; height:1px; background:var(--gold);}
+.section-title{font-size:clamp(2rem,4vw,3.1rem); font-weight:400; line-height:1.15; max-width:760px;}
+.section-title em{font-style:italic; color:var(--gold);}
+.section-copy{margin-top:22px; font-size:1.02rem; color:var(--ink-dim); line-height:1.75; font-weight:300; max-width:600px;}
+.reveal{opacity:0; transform:translateY(30px);}
+
+/* ---------- Ranking proof (editorial cards) ---------- */
+.rank-cards{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); margin-top:56px;}
+.rank-card{background:var(--paper); padding:44px;}
+.rank-tag{font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--gold); letter-spacing:0.08em;}
+.rank-card h3{font-size:1.5rem; margin-top:14px; margin-bottom:30px;}
+.rank-svg{width:100%; height:auto; overflow:visible;}
+.rank-line{fill:none; stroke-width:2.5; stroke-linecap:round;}
+.rank-card:nth-child(1) .rank-line{stroke:var(--rust);}
+.rank-card:nth-child(2) .rank-line{stroke:var(--forest);}
+.rank-grid-line{stroke:var(--line); stroke-width:1;}
+.rank-labels{display:flex; justify-content:space-between; margin-top:28px; padding-top:24px; border-top:1px solid var(--line);}
+.rank-labels .day{font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:var(--ink-faint); display:block; margin-bottom:6px;}
+.rank-labels .num{font-family:'Fraunces',serif; font-size:1.6rem;}
+.rank-labels .num.accent{color:var(--gold);}
+.factor-row{display:flex; flex-wrap:wrap; gap:12px; margin-top:44px;}
+.factor-pill{font-family:'JetBrains Mono',monospace; font-size:0.76rem; color:var(--ink-dim); border:1px solid var(--line); padding:9px 18px; border-radius:100px;}
+.factor-label{font-family:'JetBrains Mono',monospace; font-size:0.74rem; color:var(--ink-faint); margin-bottom:14px; display:block;}
+
+/* ---------- Categories ---------- */
+.cat-row{display:flex; flex-wrap:wrap; gap:14px; margin-top:44px;}
+.cat-pill{
+  font-family:'Fraunces',serif; font-size:1.05rem; padding:14px 26px; border:1px solid var(--line-strong); border-radius:100px;
+  transition:background 0.3s, color 0.3s, border-color 0.3s;
+}
+.cat-pill:hover{background:var(--forest); color:var(--cream); border-color:var(--forest);}
+
+/* ---------- Bento services ---------- */
+.bento{display:grid; grid-template-columns:repeat(6,1fr); gap:16px; margin-top:56px;}
+.bento-cell{
+  border:1px solid var(--line); border-radius:4px; padding:32px; background:var(--paper);
+  transition:background 0.4s, border-color 0.4s; position:relative; overflow:hidden;
+}
+.bento-cell:hover{background:var(--forest); border-color:var(--forest);}
+.bento-cell:hover, .bento-cell:hover h3, .bento-cell:hover p, .bento-cell:hover .bento-group{color:var(--cream) !important;}
+.bento-cell.g-wide{grid-column:span 3;}
+.bento-cell.g-full{grid-column:span 6;}
+.bento-cell.g-narrow{grid-column:span 2;}
+.bento-group{font-family:'JetBrains Mono',monospace; font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; display:block;}
+.bento-cell h3{font-size:1.25rem; font-weight:500; margin-bottom:10px;}
+.bento-cell p{font-size:0.9rem; color:var(--ink-dim); line-height:1.6; font-weight:300;}
+@media (max-width:960px){ .bento-cell, .bento-cell.g-wide, .bento-cell.g-narrow{grid-column:span 6;} }
+
+/* ---------- Founder / About ---------- */
+.about-panel{background:var(--forest); color:var(--cream); padding:150px 0;}
+.about-grid{display:grid; grid-template-columns:0.8fr 1.2fr; gap:70px; align-items:center;}
+.about-panel .section-label{color:var(--gold-bright);}
+.about-panel .section-label::before{background:var(--gold-bright);}
+.about-quote{font-family:'Fraunces',serif; font-style:italic; font-size:clamp(1.5rem,2.6vw,2.1rem); line-height:1.5; color:var(--cream);}
+.about-name{margin-top:34px; font-family:'JetBrains Mono',monospace; font-size:0.86rem; color:var(--gold-bright);}
+.about-name span{display:block; color:var(--cream-dim); margin-top:4px; font-size:0.78rem;}
+.about-ring{width:220px; height:220px; border-radius:50%; border:1px solid rgba(245,239,226,0.2); display:flex; align-items:center; justify-content:center; margin:0 auto;}
+.about-initials{font-family:'Fraunces',serif; font-size:2.6rem; color:var(--gold-bright);}
+
+/* ---------- Process ---------- */
+.process-list{margin-top:56px; border-top:1px solid var(--line);}
+.process-row{display:grid; grid-template-columns:80px 200px 1fr; gap:30px; padding:30px 0; border-bottom:1px solid var(--line); align-items:baseline; transition:padding-left 0.3s;}
+.process-row:hover{padding-left:14px;}
+.process-row .pnum{font-family:'Fraunces',serif; font-style:italic; color:var(--gold); font-size:1.1rem;}
+.process-row h3{font-size:1.15rem; font-weight:500;}
+.process-row p{font-size:0.92rem; color:var(--ink-dim); font-weight:300; line-height:1.6;}
+@media (max-width:760px){ .process-row{grid-template-columns:1fr;} }
+
+/* ---------- Portfolio horizontal scroll ---------- */
+.portfolio-pin{height:100vh; display:flex; align-items:center; overflow:hidden; background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+.portfolio-head-fixed{position:absolute; top:80px; left:0; z-index:3;}
+.portfolio-track{display:flex; gap:28px; will-change:transform; padding-left:44px;}
+.case-card{
+  width:min(560px, 78vw); flex-shrink:0; border:1px solid var(--line-strong); border-radius:6px; padding:40px; background:var(--cream);
+}
+.case-tag{font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--gold); border:1px solid var(--line); padding:5px 12px; border-radius:100px; display:inline-block;}
+.case-card h3{font-size:1.7rem; margin-top:20px; margin-bottom:16px;}
+.case-card p{color:var(--ink-dim); font-size:0.94rem; line-height:1.65; font-weight:300;}
+.case-metrics{display:flex; gap:30px; margin-top:26px; padding-top:22px; border-top:1px solid var(--line);}
+.case-metrics div .mv{font-family:'Fraunces',serif; font-size:1.3rem; color:var(--rust);}
+.case-metrics div .ml{font-family:'JetBrains Mono',monospace; font-size:0.66rem; color:var(--ink-faint); margin-top:4px;}
+
+/* ---------- Pricing ---------- */
+.price-row{display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:56px; border:1px solid var(--line);}
+.price-col{padding:44px 34px; border-right:1px solid var(--line); display:flex; flex-direction:column;}
+.price-col:last-child{border-right:none;}
+.price-col.mid{background:var(--forest); color:var(--cream);}
+.price-col.mid .price-list li{color:var(--cream-dim);}
+.price-col.mid .price-list li::before{color:var(--gold-bright);}
+.price-tag2{font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase; opacity:0.7;}
+.price-name2{font-family:'Fraunces',serif; font-size:1.7rem; margin-top:16px;}
+.price-list{list-style:none; margin-top:28px; display:flex; flex-direction:column; gap:13px; flex:1;}
+.price-list li{font-size:0.88rem; color:var(--ink-dim); padding-left:18px; position:relative; font-weight:300;}
+.price-list li::before{content:'·'; position:absolute; left:0; color:var(--gold); font-size:1.3rem; top:-4px;}
+.price-col .btn{margin-top:30px; justify-content:center; border:1px solid var(--line-strong);}
+.price-col.mid .btn{background:var(--gold-bright); color:var(--forest); border:none;}
+
+/* ---------- FAQ ---------- */
+.faq-list{margin-top:50px; border-top:1px solid var(--line);}
+.faq-item{border-bottom:1px solid var(--line); padding:28px 0; cursor:pointer;}
+.faq-q{display:flex; justify-content:space-between; gap:20px; align-items:center; font-family:'Fraunces',serif; font-size:1.15rem;}
+.faq-icon{font-family:'JetBrains Mono',monospace; color:var(--gold); transition:transform 0.3s;}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+.faq-a{max-height:0; overflow:hidden; transition:max-height 0.4s, opacity 0.3s; opacity:0;}
+.faq-item.open .faq-a{max-height:220px; opacity:1; margin-top:14px;}
+.faq-a p{color:var(--ink-dim); font-size:0.94rem; line-height:1.7; font-weight:300; max-width:680px;}
+
+/* ---------- Contact / final ---------- */
+.contact-panel{background:var(--forest); color:var(--cream); padding:170px 0 120px; text-align:center;}
+.contact-panel .section-label{justify-content:center; color:var(--gold-bright);}
+.contact-panel .section-label::before{display:none;}
+.contact-headline{font-size:clamp(2.4rem,7vw,5.4rem); font-weight:400; line-height:1.02;}
+.contact-headline em{font-style:italic; color:var(--gold-bright);}
+.contact-actions{margin-top:48px; display:flex; gap:18px; justify-content:center; flex-wrap:wrap;}
+.contact-form{
+  margin-top:80px; display:grid; grid-template-columns:1fr 1fr; gap:20px; text-align:left; max-width:900px; margin-left:auto; margin-right:auto;
+}
+.form-field{display:flex; flex-direction:column; gap:8px;}
+.form-field.full{grid-column:1/-1;}
+.form-field label{font-family:'JetBrains Mono',monospace; font-size:0.68rem; letter-spacing:0.06em; color:var(--cream-dim); text-transform:uppercase;}
+.form-field input, .form-field select, .form-field textarea{
+  background:transparent; border:none; border-bottom:1px solid rgba(245,239,226,0.28); padding:10px 2px;
+  color:var(--cream); font-family:'Inter',sans-serif; font-size:0.94rem;
+}
+.form-field textarea{resize:vertical; min-height:70px;}
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus{outline:none; border-color:var(--gold-bright);}
+.form-field option{color:var(--ink);}
+.contact-form .btn{grid-column:1/-1; justify-self:start; margin-top:10px; border:none; cursor:pointer;}
+.form-note{grid-column:1/-1; font-size:0.76rem; color:var(--cream-dim); font-family:'JetBrains Mono',monospace;}
+@media (max-width:700px){ .contact-form{grid-template-columns:1fr;} }
+
+footer{background:var(--forest); color:var(--cream-dim); border-top:1px solid rgba(245,239,226,0.12);}
+.footer-marquee{padding:26px 0; overflow:hidden; border-bottom:1px solid rgba(245,239,226,0.12);}
+.footer-marquee .marquee-track{animation-duration:22s;}
+.footer-marquee .marquee-item{color:var(--gold-bright); font-size:1.5rem;}
+.footer-top{padding:90px 0 64px; display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:50px;}
+.footer-brand-col .brand{color:var(--cream); font-size:1.2rem;}
+.footer-brand-col .brand-mark{background:var(--gold-bright);}
+.footer-tagline{margin-top:18px; font-family:'Fraunces',serif; font-style:italic; font-size:1.15rem; color:var(--cream); line-height:1.5; max-width:280px;}
+.footer-socials{display:flex; flex-wrap:wrap; gap:10px; margin-top:30px;}
+.footer-social-btn{
+  width:42px; height:42px; border-radius:50%; border:1px solid rgba(245,239,226,0.25);
+  display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace;
+  font-size:0.68rem; letter-spacing:0.02em; color:var(--cream-dim); transition:background 0.3s, color 0.3s, border-color 0.3s;
+}
+.footer-social-btn:hover{background:var(--gold-bright); color:var(--forest); border-color:var(--gold-bright);}
+.footer-col h4{
+  font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--gold-bright); margin-bottom:22px;
+}
+.footer-col ul{list-style:none; display:flex; flex-direction:column; gap:13px;}
+.footer-col a{font-family:'Fraunces',serif; font-size:0.98rem; color:var(--cream-dim); transition:color 0.3s, padding-left 0.3s;}
+.footer-col a:hover{color:var(--cream); padding-left:6px;}
+.footer-contact-item{margin-bottom:18px;}
+.footer-contact-item span{display:block; font-family:'JetBrains Mono',monospace; font-size:0.66rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px;}
+.footer-bottom{border-top:1px solid rgba(245,239,226,0.12); padding:26px 0;}
+.footer-row{display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; font-family:'JetBrains Mono',monospace; font-size:0.76rem;}
+.footer-row a:hover{color:var(--gold-bright);}
+.footer-links{display:flex; gap:24px;}
+@media (max-width:860px){ .footer-top{grid-template-columns:1fr 1fr; gap:36px;} }
+@media (max-width:560px){ .footer-top{grid-template-columns:1fr;} }
+
+@media (max-width:860px){
+  .rank-cards, .about-grid, .price-row{grid-template-columns:1fr;}
+  .price-col{border-right:none; border-bottom:1px solid var(--line);}
+  .section-pad{padding:100px 0;}
+  .wrap{padding:0 24px;}
+  .hero-stats{gap:20px;}
+  .hero-stat{padding-right:0; margin-right:0; border-right:none; width:45%;}
+}
+</style>
+</head>
+<body>
+
+<div class="curtain" id="curtain"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="progress-rail"><div class="progress-fill" id="progressFill"></div></div>
+
+<header id="siteHeader">
+  <div class="wrap">
+    <a href="#top" class="brand"><span class="brand-mark"></span>Upwork Manager</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#pricing">Pricing</a>
+    </div>
+    <a href="https://www.upwork.com/freelancers/latifurrahmanbappy" target="_blank" rel="noopener" class="nav-cta">Hire on Upwork</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-grain"></div>
+    <div class="wrap hero-inner">
+      <span class="hero-eyebrow" id="eyebrowText">Podcast Growth · Ranking · SEO · Social Media</span>
+      <h1 id="kineticHeadline">Your show deserves to be <em>heard</em>, not just uploaded.</h1>
+      <p class="hero-sub">Strategic podcast growth and category ranking on Apple Podcasts and Spotify — built for businesses, investors, course creators, doctors and health experts who need their voice to lead the category.</p>
+      <div class="hero-actions">
+        <a href="https://www.upwork.com/freelancers/latifurrahmanbappy" target="_blank" rel="noopener" class="btn btn-fill magnetic" data-magnetic>Get My Show Ranked</a>
+        <a href="#portfolio" class="btn btn-line magnetic" data-magnetic>See the Results</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="v">100K–2M+</div><div class="l">MONTHLY DOWNLOADS ACHIEVED</div></div>
+        <div class="hero-stat"><div class="v">#1–10</div><div class="l">CATEGORY RANKING REACHED</div></div>
+        <div class="hero-stat"><div class="v">10+ yrs</div><div class="l">DIGITAL MARKETING EXPERIENCE</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GOLD MARQUEE ============ -->
+  <div class="marquee-band">
+    <div class="marquee-track" id="marqueeTrack"></div>
+  </div>
+
+  <!-- ============ PLATFORM BAND ============ -->
+  <div class="platform-band">
+    <div class="wrap"><span class="platform-label">Platforms &amp; podcast ecosystem I work across</span></div>
+    <div class="platform-track" id="platformTrack"></div>
+  </div>
+
+  <!-- ============ RANKING PROOF ============ -->
+  <section class="section-pad" id="ranking">
+    <div class="wrap">
+      <span class="section-label reveal">The core service</span>
+      <h2 class="section-title reveal">Target: Top 1–20 in your category, <em>typically within 15 days.</em></h2>
+      <p class="section-copy reveal">The two charts below show the kind of category-ranking movement a focused campaign is built to produce — a target outcome based on past campaigns, not a guarantee for every show.</p>
+      <div class="rank-cards">
+        <div class="rank-card reveal">
+          <span class="rank-tag">SCENARIO A</span>
+          <h3>Unranked → Top 1–50</h3>
+          <svg class="rank-svg" viewBox="0 0 400 170" preserveAspectRatio="none">
+            <line class="rank-grid-line" x1="0" y1="20" x2="400" y2="20"/>
+            <line class="rank-grid-line" x1="0" y1="85" x2="400" y2="85"/>
+            <line class="rank-grid-line" x1="0" y1="150" x2="400" y2="150"/>
+            <path class="rank-line" id="rlineA" d="M10,158 C90,155 140,125 180,100 C220,78 260,50 300,32 C330,20 355,14 390,12"/>
+          </svg>
+          <div class="rank-labels">
+            <div><span class="day">DAY 1</span><span class="num">Not Ranked</span></div>
+            <div><span class="day">DAY 15</span><span class="num accent" id="rendA">#34</span></div>
+          </div>
+        </div>
+        <div class="rank-card reveal">
+          <span class="rank-tag">SCENARIO B</span>
+          <h3>Position #104 → Top 10</h3>
+          <svg class="rank-svg" viewBox="0 0 400 170" preserveAspectRatio="none">
+            <line class="rank-grid-line" x1="0" y1="20" x2="400" y2="20"/>
+            <line class="rank-grid-line" x1="0" y1="85" x2="400" y2="85"/>
+            <line class="rank-grid-line" x1="0" y1="150" x2="400" y2="150"/>
+            <path class="rank-line" id="rlineB" d="M10,95 C70,90 110,74 150,60 C190,47 230,32 270,22 C310,15 350,11 390,10"/>
+          </svg>
+          <div class="rank-labels">
+            <div><span class="day">DAY 1</span><span class="num">#104</span></div>
+            <div><span class="day">DAY 15</span><span class="num accent" id="rendB">#104</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" style="margin-top:44px;">
+        <span class="factor-label">Actual results depend on</span>
+        <div class="factor-row">
+          <span class="factor-pill">Audience activity</span>
+          <span class="factor-pill">Downloads &amp; listens</span>
+          <span class="factor-pill">Listener engagement</span>
+          <span class="factor-pill">Category competition</span>
+          <span class="factor-pill">Geographic market</span>
+          <span class="factor-pill">Platform algorithms</span>
+          <span class="factor-pill">Release timing</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CATEGORIES ============ -->
+  <section class="section-pad" id="categories" style="padding-top:0;">
+    <div class="wrap">
+      <span class="section-label reveal">Where I specialize</span>
+      <h2 class="section-title reveal">Most popular podcast categories I work in.</h2>
+      <div class="cat-row reveal">
+        <span class="cat-pill">Business</span>
+        <span class="cat-pill">Health &amp; Fitness</span>
+        <span class="cat-pill">True Crime</span>
+        <span class="cat-pill">Society &amp; Culture</span>
+        <span class="cat-pill">Self-Improvement</span>
+        <span class="cat-pill">Education</span>
+        <span class="cat-pill">News &amp; Politics</span>
+        <span class="cat-pill">Comedy</span>
+        <span class="cat-pill">Technology</span>
+        <span class="cat-pill">Sports</span>
+        <span class="cat-pill">Religion &amp; Spirituality</span>
+        <span class="cat-pill">Arts &amp; Entertainment</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES (bento) ============ -->
+  <section class="section-pad" id="services">
+    <div class="wrap">
+      <span class="section-label reveal">Capabilities</span>
+      <h2 class="section-title reveal">Everything a growing show needs, <em>under one strategy.</em></h2>
+      <div class="bento" id="bentoGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT / FOUNDER ============ -->
+  <section class="about-panel" id="about">
+    <div class="wrap about-grid">
+      <div class="reveal">
+        <div class="about-ring"><span class="about-initials">LRB</span></div>
+      </div>
+      <div class="reveal">
+        <span class="section-label">Who's behind Upwork Manager</span>
+        <p class="about-quote">"I've spent 10+ years turning unranked shows into category leaders — through positioning, not luck. You work directly with me, on every campaign."</p>
+        <div class="about-name">Latifur Rahman Bappy<span>Podcast Growth · Ranking · SEO · Social Media Marketing Specialist</span></div>
+        <div style="margin-top:36px;">
+          <a href="https://www.upwork.com/freelancers/latifurrahmanbappy" target="_blank" rel="noopener" class="btn btn-fill magnetic" data-magnetic>View Upwork Profile</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="section-pad" id="process">
+    <div class="wrap">
+      <span class="section-label reveal">How I work</span>
+      <h2 class="section-title reveal">A clear process, <em>from audit to scale.</em></h2>
+      <div class="process-list" id="processList"></div>
+    </div>
+  </section>
+
+  <!-- ============ PORTFOLIO (horizontal scroll) ============ -->
+  <section id="portfolio">
+    <div class="portfolio-pin">
+      <div class="wrap portfolio-head-fixed">
+        <span class="section-label">Case studies</span>
+        <h2 class="section-title" style="font-size:clamp(1.6rem,3vw,2.2rem);">Illustrative growth scenarios</h2>
+      </div>
+      <div class="portfolio-track" id="portfolioTrack"></div>
+    </div>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section class="section-pad" id="pricing">
+    <div class="wrap">
+      <span class="section-label reveal">Investment</span>
+      <h2 class="section-title reveal">Packages built around your goals, <em>not a fixed menu.</em></h2>
+      <p class="section-copy reveal">Every show is different — pricing depends on your platforms, workload, category and campaign scope.</p>
+      <div class="price-row reveal" id="priceRow"></div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section-pad" id="faq" style="padding-top:0;">
+    <div class="wrap">
+      <span class="section-label reveal">Common questions</span>
+      <h2 class="section-title reveal">Before you reach out.</h2>
+      <div class="faq-list" id="faqList"></div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact-panel" id="contact">
+    <div class="wrap">
+      <span class="section-label">Let's talk</span>
+      <h2 class="contact-headline">Ready to build your podcast <br>into a <em>global brand?</em></h2>
+      <div class="contact-actions">
+        <a href="https://www.upwork.com/freelancers/latifurrahmanbappy" target="_blank" rel="noopener" class="btn btn-fill magnetic" data-magnetic>Hire Me on Upwork</a>
+        <a href="#portfolio" class="btn btn-line magnetic" data-magnetic style="border-color:rgba(245,239,226,0.35); color:var(--cream);">View Portfolio</a>
+      </div>
+      <form class="contact-form" id="contactForm">
+        <div class="form-field"><label>Name</label><input type="text" id="f-name" required></div>
+        <div class="form-field"><label>Email</label><input type="email" id="f-email" required></div>
+        <div class="form-field"><label>Podcast / Company Name</label><input type="text" id="f-podcast"></div>
+        <div class="form-field"><label>Website</label><input type="text" id="f-website"></div>
+        <div class="form-field"><label>Primary Goal</label>
+          <select id="f-goal">
+            <option>Improve chart ranking</option>
+            <option>Grow downloads &amp; listeners</option>
+            <option>YouTube / social growth</option>
+            <option>Sponsorship readiness</option>
+            <option>Full growth management</option>
+          </select>
+        </div>
+        <div class="form-field"><label>Target Market</label><input type="text" id="f-market" placeholder="e.g. USA, UK, Canada"></div>
+        <div class="form-field full"><label>Message</label><textarea id="f-message" placeholder="Tell me about your show..."></textarea></div>
+        <span class="form-note">Submitting opens your email client with these details pre-filled.</span>
+        <button type="submit" class="btn btn-fill">Send My Details</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-marquee">
+    <div class="marquee-track" id="footerMarquee"></div>
+  </div>
+
+  <div class="wrap footer-top">
+    <div class="footer-brand-col">
+      <a href="#top" class="brand"><span class="brand-mark"></span>Upwork Manager</a>
+      <p class="footer-tagline">"Helping podcasts and brands increase downloads, rankings, visibility and revenue — worldwide."</p>
+      <div class="footer-socials" id="footerSocials"></div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Podcast Growth &amp; Ranking</a></li>
+        <li><a href="#services">Podcast SEO</a></li>
+        <li><a href="#services">Cross-Promotion &amp; Collaboration</a></li>
+        <li><a href="#services">Sponsorship Readiness</a></li>
+        <li><a href="#services">YouTube SEO &amp; Growth</a></li>
+        <li><a href="#services">Social Media Management</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#portfolio">Case Studies</a></li>
+        <li><a href="#process">Our Process</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Get in Touch</h4>
+      <div class="footer-contact-item">
+        <span>Email</span>
+        <a href="mailto:hello@upworkmanager.com">hello@upworkmanager.com</a>
+      </div>
+      <div class="footer-contact-item">
+        <span>Upwork Profile</span>
+        <a href="https://www.upwork.com/freelancers/latifurrahmanbappy" target="_blank" rel="noopener">latifurrahmanbappy</a>
+      </div>
+      <div class="footer-contact-item">
+        <span>Markets</span>
+        <a href="#about">USA · UK · Canada · Australia</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap footer-bottom">
+    <div class="footer-row">
+      <span>© 2026 upworkmanager.com — Podcast growth, ranking &amp; SEO.</span>
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="mailto:hello@upworkmanager.com">Email</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const CONFIG = {
+  marquee: ["Podcast Growth", "Category Ranking", "Podcast SEO", "Cross-Promotion", "Sponsorship Readiness", "Social Media Marketing", "YouTube SEO"],
+  platforms: ["Upwork","Fiverr","Toptal","Freelancer","Podchaser","Listen Notes","iHeartRadio","Spreaker","Apple Podcasts","Spotify"],
+  services: [
+    {group:"Growth & Ranking", t:"Apple Podcasts & Spotify Ranking", d:"Category positioning and download-velocity tactics aimed at Top 1–20 placement.", size:"wide"},
+    {group:"Growth & Ranking", t:"Podcast Launch Strategy", d:"A structured release plan so a new show enters the charts with momentum.", size:""},
+    {group:"SEO & Discovery", t:"Podcast SEO", d:"Titles, descriptions and metadata tuned for Apple, Spotify and Google search.", size:""},
+    {group:"SEO & Discovery", t:"YouTube Podcast SEO", d:"Video SEO, chapters, tags and thumbnails built for discovery and watch-time.", size:"wide"},
+    {group:"Partnerships", t:"Cross-Promotion & Collaboration", d:"Strategic exchanges and guest pairing with adjacent shows and creators.", size:"narrow"},
+    {group:"Partnerships", t:"Sponsorship Readiness", d:"Positioning your audience and numbers for real sponsor conversations.", size:"narrow"},
+    {group:"Content & Social", t:"Video Editing & Short-Form Clips", d:"Episodes cut into Reels, Shorts and TikTok-ready clips with hooks and captions.", size:"narrow"},
+    {group:"Content & Social", t:"Social Media Management & Growth", d:"Instagram, TikTok, Facebook, LinkedIn and YouTube — planned, posted, grown.", size:"full"}
+  ],
+  process: [
+    {n:"01", t:"Audit", d:"A full review of your current ranking, downloads, SEO and platform setup."},
+    {n:"02", t:"Strategy", d:"A growth plan matched to your category, audience and goals."},
+    {n:"03", t:"Optimization", d:"Titles, metadata and profiles rebuilt for how listeners actually search."},
+    {n:"04", t:"Promotion", d:"Targeted campaigns to drive real downloads and category movement."},
+    {n:"05", t:"Cross-Promotion", d:"Exchanges with adjacent shows to reach warm, relevant audiences."},
+    {n:"06", t:"Collaboration", d:"Guest and creator pairing based on genuine audience overlap."},
+    {n:"07", t:"Analytics", d:"Clear reporting on downloads, ranking and audience response."},
+    {n:"08", t:"Scale", d:"Doubling down on what's working, refining what isn't, month over month."}
+  ],
+  portfolio: [
+    {name:"The Ledger Room", cat:"Business", platform:"Apple Podcasts", start:"#34", growth:"→ #6", followers:"+4,200", desc:"Category-focused SEO and release-timing changes shifted category standing within a single quarter."},
+    {name:"Wellpoint", cat:"Health & Wellness", platform:"Spotify", start:"12K/mo", growth:"→ 61K/mo", followers:"+11,800", desc:"Coordinated Spotify and Instagram content strategy compounded listener growth across platforms."},
+    {name:"Groundwork Sessions", cat:"Education", platform:"YouTube", start:"2K views/ep", growth:"→ 24K views/ep", followers:"+9,400", desc:"Chapter structuring and title testing rebuilt discoverability for the show's video catalog."}
+  ],
+  pricing: [
+    {tag:"For new shows", name:"Starter", items:["Podcast SEO & metadata setup","Apple Podcasts & Spotify optimization","Category & keyword positioning","Launch strategy & release plan"], cta:"Request a Proposal"},
+    {tag:"Most requested", name:"Growth", items:["Everything in Starter","Chart ranking campaign","Cross-promotion & collaboration outreach","YouTube SEO for episodes","Monthly analytics & reporting"], cta:"Request a Proposal", mid:true},
+    {tag:"For established shows", name:"Authority", items:["Everything in Growth","Social media management & growth","Video editing & thumbnail design","Sponsorship readiness & media kit","Ongoing year-round management"], cta:"Request a Proposal"}
+  ],
+  faq: [
+    {q:"Can you guarantee a specific chart ranking?", a:"No. Ranking depends on category competition, audience behavior, platform algorithms and campaign performance. I build toward the strongest realistic position and share targets based on past results, not guarantees."},
+    {q:"How fast can I expect movement?", a:"Most campaigns are built to show category movement within the first 15 days, compounding over the following months."},
+    {q:"Which platforms do you work on?", a:"Apple Podcasts and Spotify are the core focus, alongside YouTube and Instagram for cross-platform growth."},
+    {q:"Which markets do you work with?", a:"Primarily USA, UK, Canada and Australia, alongside other English-speaking markets worldwide."},
+    {q:"How does pricing work?", a:"Pricing depends on your goals, platforms, workload and market. Send your details through the form and I'll follow up with a proposal."}
+  ],
+  socials: [
+    {label:"UW", name:"Upwork", href:"https://www.upwork.com/freelancers/latifurrahmanbappy"},
+    {label:"IN", name:"LinkedIn", href:"#"},
+    {label:"IG", name:"Instagram", href:"#"},
+    {label:"FB", name:"Facebook", href:"#"},
+    {label:"YT", name:"YouTube", href:"#"},
+    {label:"TT", name:"TikTok", href:"#"},
+    {label:"X", name:"X / Twitter", href:"#"}
+  ],
+  footerMarquee: ["Let's grow your show", "Book a strategy call", "Top 1–20 ranking", "Worldwide podcast growth"]
+};
+
+/* ---------- Render dynamic content ---------- */
+document.getElementById('marqueeTrack').innerHTML =
+  (CONFIG.marquee.map(m=>`<span class="marquee-item">${m}</span>`).join('')).repeat(2);
+
+document.getElementById('platformTrack').innerHTML =
+  (CONFIG.platforms.map(p=>`<span class="platform-item">${p}</span>`).join('')).repeat(2);
+
+document.getElementById('bentoGrid').innerHTML = CONFIG.services.map(s=>`
+  <div class="bento-cell reveal ${s.size?'g-'+s.size:''}">
+    <span class="bento-group">${s.group}</span>
+    <h3>${s.t}</h3>
+    <p>${s.d}</p>
+  </div>`).join('');
+
+document.getElementById('processList').innerHTML = CONFIG.process.map(p=>`
+  <div class="process-row reveal">
+    <span class="pnum">${p.n}</span>
+    <h3>${p.t}</h3>
+    <p>${p.d}</p>
+  </div>`).join('');
+
+document.getElementById('portfolioTrack').innerHTML = CONFIG.portfolio.map(p=>`
+  <div class="case-card">
+    <span class="case-tag">${p.cat} · ${p.platform}</span>
+    <h3>${p.name}</h3>
+    <p>${p.desc}</p>
+    <div class="case-metrics">
+      <div><div class="mv">${p.start}</div><div class="ml">STARTING POINT</div></div>
+      <div><div class="mv">${p.growth}</div><div class="ml">RESULT</div></div>
+      <div><div class="mv">${p.followers}</div><div class="ml">FOLLOWER CHANGE</div></div>
+    </div>
+  </div>`).join('') + `<div class="case-card" style="display:flex; align-items:center; justify-content:center; text-align:center;"><div><p style="font-family:'JetBrains Mono',monospace; font-size:0.78rem; color:var(--ink-faint);">Illustrative examples — swap in your real case studies anytime.</p></div></div>`;
+
+document.getElementById('priceRow').innerHTML = CONFIG.pricing.map(t=>`
+  <div class="price-col ${t.mid?'mid':''}">
+    <span class="price-tag2">${t.tag}</span>
+    <div class="price-name2">${t.name}</div>
+    <ul class="price-list">${t.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+    <a href="#contact" class="btn btn-line">${t.cta}</a>
+  </div>`).join('');
+
+document.getElementById('faqList').innerHTML = CONFIG.faq.map(f=>`
+  <div class="faq-item">
+    <div class="faq-q">${f.q}<span class="faq-icon">+</span></div>
+    <div class="faq-a"><p>${f.a}</p></div>
+  </div>`).join('');
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.querySelector('.faq-q').addEventListener('click', ()=>item.classList.toggle('open'));
+});
+
+/* ---------- Footer socials + marquee ---------- */
+document.getElementById('footerSocials').innerHTML = CONFIG.socials.map(s=>
+  `<a href="${s.href}" ${s.href!=='#'?'target="_blank" rel="noopener"':''} class="footer-social-btn" title="${s.name}">${s.label}</a>`
+).join('');
+
+document.getElementById('footerMarquee').innerHTML =
+  (CONFIG.footerMarquee.map(m=>`<span class="marquee-item">${m}</span>`).join('')).repeat(2);
+
+/* ---------- Contact form -> mailto ---------- */
+document.getElementById('contactForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const v = id => (document.getElementById(id)?.value || '').trim();
+  const body = [`Name: ${v('f-name')}`,`Email: ${v('f-email')}`,`Podcast: ${v('f-podcast')}`,`Website: ${v('f-website')}`,`Goal: ${v('f-goal')}`,`Market: ${v('f-market')}`,``,`Message:`,v('f-message')].join('\n');
+  window.location.href = `mailto:hello@upworkmanager.com?subject=${encodeURIComponent('New Growth Inquiry — '+(v('f-podcast')||v('f-name')))}&body=${encodeURIComponent(body)}`;
+});
+
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- Custom cursor ---------- */
+if(!prefersReduced && matchMedia('(pointer:fine)').matches){
+  const dot = document.getElementById('cursorDot'), ring = document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  window.addEventListener('mousemove', e=>{ mx=e.clientX; my=e.clientY; dot.style.left=mx+'px'; dot.style.top=my+'px'; });
+  function loop(){ rx += (mx-rx)*0.16; ry += (my-ry)*0.16; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(loop); }
+  loop();
+  document.querySelectorAll('a,button,.faq-item,.bento-cell,.cat-pill').forEach(el=>{
+    el.addEventListener('mouseenter', ()=>ring.classList.add('hover'));
+    el.addEventListener('mouseleave', ()=>ring.classList.remove('hover'));
+  });
+}
+
+/* ---------- Magnetic buttons ---------- */
+document.querySelectorAll('[data-magnetic]').forEach(btn=>{
+  btn.addEventListener('mousemove', e=>{
+    const r = btn.getBoundingClientRect();
+    const x = (e.clientX - r.left - r.width/2) * 0.35;
+    const y = (e.clientY - r.top - r.height/2) * 0.35;
+    btn.style.transform = `translate(${x}px, ${y}px)`;
+  });
+  btn.addEventListener('mouseleave', ()=>{ btn.style.transform='translate(0,0)'; });
+});
+
+/* ---------- Header progress ---------- */
+window.addEventListener('scroll', ()=>{
+  const h = document.documentElement;
+  document.getElementById('progressFill').style.width = (h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+}, {passive:true});
+
+/* ---------- GSAP: load curtain, kinetic headline, reveals, horizontal scroll ---------- */
+if(window.gsap && window.ScrollTrigger){
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* Split kinetic headline into words */
+  const h1 = document.getElementById('kineticHeadline');
+  h1.innerHTML = h1.textContent.split(' ').map(w=>`<span class="word"><span>${w}</span></span>`).join(' ');
+  gsap.set('#kineticHeadline .word span', {yPercent:110});
+  gsap.set('#eyebrowText', {opacity:0, y:14});
+
+  const tl = gsap.timeline({defaults:{ease:'power4.out'}});
+  tl.to('#curtain', {yPercent:-100, duration:1.1, ease:'power3.inOut'}, 0.15)
+    .to('#eyebrowText', {opacity:1, y:0, duration:0.6}, 0.5)
+    .to('#kineticHeadline .word span', {yPercent:0, duration:1, stagger:0.045}, 0.65)
+    .from('.hero-sub', {opacity:0, y:18, duration:0.8}, 1.1)
+    .from('.hero-actions', {opacity:0, y:18, duration:0.8}, 1.25)
+    .from('.hero-stats', {opacity:0, y:18, duration:0.8}, 1.4);
+
+  gsap.utils.toArray('.reveal').forEach(el=>{
+    gsap.to(el, {opacity:1, y:0, duration:0.9, ease:'power3.out', scrollTrigger:{trigger:el, start:'top 88%'}});
+  });
+
+  /* Ranking chart draw */
+  ['A','B'].forEach(key=>{
+    const path = document.getElementById('rline'+key);
+    const len = path.getTotalLength();
+    path.style.strokeDasharray = len; path.style.strokeDashoffset = len;
+    const panel = path.closest('.rank-card');
+    const endEl = document.getElementById('rend'+key);
+    ScrollTrigger.create({
+      trigger:panel, start:'top 80%', end:'top 25%', scrub:0.6,
+      onUpdate:self=>{
+        path.style.strokeDashoffset = len*(1-self.progress);
+        if(key==='B'){ const val=Math.round(104-self.progress*(104-7)); endEl.textContent = self.progress>0.97?'#7':'#'+val; }
+      }
+    });
+  });
+
+  /* Horizontal scroll portfolio */
+  const track = document.getElementById('portfolioTrack');
+  function setupHorizontal(){
+    const distance = track.scrollWidth - window.innerWidth + 88;
+    ScrollTrigger.getById('portfolioScroll')?.kill();
+    gsap.to(track, {
+      x: -distance, ease:'none',
+      scrollTrigger:{
+        id:'portfolioScroll', trigger:'.portfolio-pin', start:'top top', end:()=>'+='+distance,
+        scrub:0.6, pin:true, invalidateOnRefresh:true
+      }
+    });
+  }
+  setupHorizontal();
+  window.addEventListener('resize', ()=>ScrollTrigger.refresh());
+} else {
+  document.querySelectorAll('.reveal').forEach(el=>el.style.opacity=1);
+  document.getElementById('curtain').style.display='none';
+}
+</script>
+
+</body>
+</html>
