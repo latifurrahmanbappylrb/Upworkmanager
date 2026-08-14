@@ -326,6 +326,18 @@ section{position:relative;}
 .about-name span{display:block; color:var(--cream-dim); margin-top:4px; font-size:0.78rem;}
 .about-ring{width:220px; height:220px; border-radius:50%; border:1px solid rgba(245,239,226,0.2); display:flex; align-items:center; justify-content:center; margin:0 auto;}
 .about-initials{font-family:'Fraunces',serif; font-size:2.6rem; color:var(--gold-bright);}
+.about-specialties{display:flex; flex-wrap:wrap; gap:8px; margin-top:18px;}
+.about-specialties span{font-family:'JetBrains Mono',monospace; font-size:0.68rem; letter-spacing:0.04em; color:var(--cream); border:1px solid rgba(245,239,226,0.25); padding:6px 12px; border-radius:100px;}
+.cat-slide{padding:22px 0 6px; overflow:hidden;}
+.cat-slide-label{font-family:'JetBrains Mono',monospace; font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-bright); margin-bottom:12px; display:block;}
+.about-marquee{overflow:hidden; border-top:1px solid rgba(245,239,226,0.12); border-bottom:1px solid rgba(245,239,226,0.12); padding:14px 0; margin-bottom:10px;}
+.about-marquee-track{display:flex; width:max-content; gap:0; animation:marqueeScroll 32s linear infinite;}
+.about-marquee-track.slow{animation-duration:40s;}
+.about-m-item{display:flex; align-items:center; gap:10px; padding:0 28px; border-right:1px solid rgba(245,239,226,0.12); font-family:'Fraunces',serif; font-size:1rem; color:var(--cream); white-space:nowrap;}
+.about-m-item small{font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--gold-bright); letter-spacing:0.04em;}
+.about-m-item .dot{width:6px; height:6px; border-radius:50%; background:var(--gold-bright); flex-shrink:0;}
+
+
 
 /* ---------- Process ---------- */
 .process-list{margin-top:56px; border-top:1px solid var(--line);}
@@ -689,12 +701,58 @@ footer{background:var(--forest); color:var(--cream-dim); border-top:1px solid rg
         <div class="about-ring"><span class="about-initials">LRB</span></div>
       </div>
       <div class="reveal">
-        <span class="section-label">Who's behind Upwork Manager</span>
-        <p class="about-quote">"I've spent 10+ years turning unranked shows into category leaders — through positioning, not luck. 3+ years managing social media for Mick Hunt (Mick Unplugged) and other creators. You work directly with me, on every campaign."</p>
-        <div class="about-name">Latifur Rahman Bappy<span>Podcast Growth · Ranking · SEO · Social Media Marketing Specialist</span></div>
-        <div style="margin-top:36px; display:flex; gap:12px; flex-wrap:wrap;">
-          <a href="https://wa.me/8801316918298" target="_blank" rel="noopener" class="btn btn-fill magnetic" data-magnetic>Chat on WhatsApp</a>
-          <a href="https://www.upwork.com/freelancers/latifurrahmanbappy" target="_blank" rel="noopener" class="btn btn-line magnetic" data-magnetic>View Upwork Profile</a>
+        <span class="section-label">Brand</span>
+        <h2 style="font-family:'Fraunces',serif; font-weight:400; font-size:clamp(2rem,4vw,2.8rem); color:var(--cream); line-height:1.15; margin:8px 0 16px;">Upwork Manager</h2>
+        <p class="about-quote" style="font-size:clamp(1.15rem,2vw,1.45rem);">Podcast ranking &amp; growth for shows that need chart credibility — Apple Podcasts and Spotify category movement, real download growth, and sponsor-ready metrics.</p>
+        <p style="margin-top:16px; color:var(--cream-dim); font-weight:300; font-size:0.95rem; line-height:1.7; max-width:540px;">We run focused campaigns: ranking signals, dual-platform growth, launch windows, cross-promotion, and collaboration. Built for business leaders, investors, experts, and course creators — not vanity spikes.</p>
+
+        <div class="about-name" style="margin-top:28px;">Latifur Rahman Bappy (LRB)<span>Founder &amp; Principal Specialist · Top ~0.5% talent band · Podcast Ranking &amp; Growth Support</span></div>
+        <p style="margin-top:12px; color:var(--cream-dim); font-weight:300; font-size:0.9rem; line-height:1.65; max-width:520px;">You work directly with me on every campaign — strategy, ranking support, cross-promotion, and clear reporting. Markets: USA, UK, Canada, Australia &amp; global English-language shows.</p>
+
+        <div class="cat-slide" style="margin-top:26px;">
+          <span class="cat-slide-label">Slide 01 · Categories we rank in</span>
+          <div class="about-marquee">
+            <div class="about-marquee-track">
+              <div class="about-m-item"><span class="dot"></span>Business <small>Authority</small></div>
+              <div class="about-m-item"><span class="dot"></span>Entrepreneurship <small>Growth</small></div>
+              <div class="about-m-item"><span class="dot"></span>Health &amp; Wellness <small>Fitness</small></div>
+              <div class="about-m-item"><span class="dot"></span>Self-Improvement <small>Top charts</small></div>
+              <div class="about-m-item"><span class="dot"></span>Education <small>Experts</small></div>
+              <div class="about-m-item"><span class="dot"></span>AI &amp; Technology <small>Emerging</small></div>
+              <div class="about-m-item"><span class="dot"></span>Business <small>Authority</small></div>
+              <div class="about-m-item"><span class="dot"></span>Entrepreneurship <small>Growth</small></div>
+              <div class="about-m-item"><span class="dot"></span>Health &amp; Wellness <small>Fitness</small></div>
+              <div class="about-m-item"><span class="dot"></span>Self-Improvement <small>Top charts</small></div>
+              <div class="about-m-item"><span class="dot"></span>Education <small>Experts</small></div>
+              <div class="about-m-item"><span class="dot"></span>AI &amp; Technology <small>Emerging</small></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cat-slide" style="margin-top:4px;">
+          <span class="cat-slide-label">Slide 02 · What we deliver</span>
+          <div class="about-marquee">
+            <div class="about-marquee-track slow">
+              <div class="about-m-item"><span class="dot"></span>Category Ranking <small>Apple · Spotify</small></div>
+              <div class="about-m-item"><span class="dot"></span>Download Growth <small>Real audiences</small></div>
+              <div class="about-m-item"><span class="dot"></span>Dual-Platform <small>30-day campaigns</small></div>
+              <div class="about-m-item"><span class="dot"></span>Launch Support <small>New shows</small></div>
+              <div class="about-m-item"><span class="dot"></span>Cross-Promotion <small>Collaboration</small></div>
+              <div class="about-m-item"><span class="dot"></span>Sponsor-Ready <small>Metrics</small></div>
+              <div class="about-m-item"><span class="dot"></span>Category Ranking <small>Apple · Spotify</small></div>
+              <div class="about-m-item"><span class="dot"></span>Download Growth <small>Real audiences</small></div>
+              <div class="about-m-item"><span class="dot"></span>Dual-Platform <small>30-day campaigns</small></div>
+              <div class="about-m-item"><span class="dot"></span>Launch Support <small>New shows</small></div>
+              <div class="about-m-item"><span class="dot"></span>Cross-Promotion <small>Collaboration</small></div>
+              <div class="about-m-item"><span class="dot"></span>Sponsor-Ready <small>Metrics</small></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:28px; display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="/services.html" class="btn btn-fill magnetic" data-magnetic>View services</a>
+          <a href="https://www.upwork.com/freelancers/latifurrahmanbappy" target="_blank" rel="noopener" class="btn btn-line magnetic" data-magnetic style="border-color:rgba(245,239,226,0.35); color:var(--cream);">Hire on Upwork</a>
+          <a href="https://wa.me/8801316918298" target="_blank" rel="noopener" class="btn btn-line magnetic" data-magnetic style="border-color:rgba(245,239,226,0.35); color:var(--cream);">WhatsApp</a>
         </div>
       </div>
     </div>
