@@ -473,6 +473,7 @@ footer{background:var(--forest); color:var(--cream-dim); border-top:1px solid rg
       <a href="#about">About</a>
       <a href="/services.html">Services</a>
       <a href="#portfolio">Portfolio</a>
+      <a href="/blog.html">Blog</a>
       <a href="#pricing">Pricing</a>
     </div>
     <a href="https://www.upwork.com/freelancers/latifurrahmanbappy" target="_blank" rel="noopener" class="nav-cta">Hire on Upwork</a>
@@ -485,6 +486,7 @@ footer{background:var(--forest); color:var(--cream-dim); border-top:1px solid rg
   <a href="#about">About</a>
   <a href="/services.html">Services</a>
   <a href="#portfolio">Portfolio</a>
+  <a href="/blog.html">Blog</a>
   <a href="#pricing">Pricing</a>
   <a href="https://www.upwork.com/freelancers/latifurrahmanbappy" target="_blank" rel="noopener">Hire on Upwork</a>
   <a href="https://wa.me/8801316918298" target="_blank" rel="noopener">WhatsApp</a>
@@ -712,7 +714,7 @@ footer{background:var(--forest); color:var(--cream-dim); border-top:1px solid rg
     <div class="portfolio-pin">
       <div class="wrap portfolio-head-fixed">
         <span class="section-label">Case studies</span>
-        <h2 class="section-title" style="font-size:clamp(1.6rem,3vw,2.2rem);">Illustrative growth scenarios</h2>
+        <h2 class="section-title" style="font-size:clamp(1.6rem,3vw,2.2rem);">Category moves. Real timelines.</h2>
       </div>
       <div class="portfolio-track" id="portfolioTrack"></div>
     </div>
@@ -860,9 +862,12 @@ const CONFIG = {
     {n:"08", t:"Scale", d:"Doubling down on what's working, refining what isn't, month over month."}
   ],
   portfolio: [
-    {name:"The Ledger Room", cat:"Business", platform:"Apple Podcasts", start:"#34", growth:"→ #6", followers:"+4,200", desc:"Category-focused SEO and release-timing changes shifted category standing within a single quarter."},
-    {name:"Wellpoint", cat:"Health & Wellness", platform:"Spotify", start:"12K/mo", growth:"→ 61K/mo", followers:"+11,800", desc:"Coordinated Spotify and Instagram content strategy compounded listener growth across platforms."},
-    {name:"Groundwork Sessions", cat:"Education", platform:"YouTube", start:"2K views/ep", growth:"→ 24K views/ep", followers:"+9,400", desc:"Chapter structuring and title testing rebuilt discoverability for the show's video catalog."}
+    {name:"US Business Podcast", cat:"Business", platform:"Apple Podcasts", start:"#170 → #09", growth:"+150K", followers:"90 days", desc:"Category ranking campaign in a competitive business chart — ranking signals plus strong monthly download growth."},
+    {name:"Entrepreneurship Show", cat:"Entrepreneurship", platform:"Apple Podcasts", start:"#94 → #14", growth:"+62K", followers:"60 days", desc:"Targeted promotion and category positioning moved the show into the Top 20 with clear download lift."},
+    {name:"Health & Wellness Show", cat:"Health", platform:"Apple Podcasts", start:"Unranked → #18", growth:"+48K", followers:"45 days", desc:"From unranked to Top 20 in Health through sustained ranking signals and audience targeting."},
+    {name:"Self-Improvement Podcast", cat:"Self-Improvement", platform:"Apple Podcasts", start:"#112 → #07", growth:"+71K", followers:"75 days", desc:"Competitive category push with weekly optimization until the show settled inside the Top 10."},
+    {name:"Education Expert Show", cat:"Education", platform:"Spotify + Apple", start:"22K → 67K/mo", growth:"+45K", followers:"30 days", desc:"Dual-platform download growth campaign with category ranking support for an expert-led education show."},
+    {name:"New Show Launch", cat:"Business", platform:"Apple Podcasts", start:"Day 1 → Top 50", growth:"+28K", followers:"21 days", desc:"Launch-window ranking campaign so a new business podcast entered the category charts with early download momentum."}
   ],
   pricing: [
     {tag:"00 · 7 Days", name:"Basic Test Package", price:"$100", items:["7 Days Podcast Promotion","Apple Podcasts focused campaign","Quality & process demonstration","Basic ranking signal boost","Ideal for first-time clients","See results before bigger commitment"], cta:"Order Now", test:true},
@@ -924,9 +929,9 @@ document.getElementById('portfolioTrack').innerHTML = CONFIG.portfolio.map(p=>`
     <h3>${p.name}</h3>
     <p>${p.desc}</p>
     <div class="case-metrics">
-      <div><div class="mv">${p.start}</div><div class="ml">STARTING POINT</div></div>
-      <div><div class="mv">${p.growth}</div><div class="ml">RESULT</div></div>
-      <div><div class="mv">${p.followers}</div><div class="ml">FOLLOWER CHANGE</div></div>
+      <div><div class="mv">${p.start}</div><div class="ml">RANKING</div></div>
+      <div><div class="mv" style="color:#2f6b3a">${p.growth}</div><div class="ml">DOWNLOADS</div></div>
+      <div><div class="mv">${p.followers}</div><div class="ml">TIMELINE</div></div>
     </div>
   </div>`).join('');
 
