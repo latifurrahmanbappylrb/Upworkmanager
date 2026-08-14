@@ -143,7 +143,27 @@ header .wrap{display:flex; align-items:center; justify-content:space-between;}
 .nav-links a{opacity:0.75; transition:opacity 0.3s;}
 .nav-links a:hover{opacity:1;}
 .nav-cta{font-family:'JetBrains Mono',monospace; font-size:0.78rem; color:var(--cream); border-bottom:1px solid var(--cream); padding-bottom:2px;}
-@media (max-width:900px){ .nav-links{display:none;} }
+/* Mobile menu */
+.menu-btn{
+  display:none; background:none; border:none; cursor:pointer; padding:8px;
+  flex-direction:column; gap:5px; z-index:160;
+}
+.menu-btn span{display:block; width:22px; height:2px; background:var(--cream); transition:0.3s;}
+.mobile-nav{
+  display:none; position:fixed; top:0; left:0; right:0; bottom:0;
+  background:var(--forest); z-index:140; padding:100px 28px 40px;
+  flex-direction:column; gap:28px;
+}
+.mobile-nav.open{display:flex;}
+.mobile-nav a{
+  font-family:'Fraunces',serif; font-size:1.5rem; color:var(--cream);
+  opacity:0.9; border-bottom:1px solid rgba(245,239,226,0.12); padding-bottom:14px;
+}
+.mobile-nav a:hover{color:var(--gold-bright);}
+@media (max-width:900px){
+  .nav-links, .nav-cta{display:none !important;}
+  .menu-btn{display:flex;}
+}
 
 /* ---------- Hero (dark forest panel) ---------- */
 .hero{
@@ -451,13 +471,24 @@ footer{background:var(--forest); color:var(--cream-dim); border-top:1px solid rg
     <a href="#top" class="brand"><span class="brand-mark"></span>Upwork Manager</a>
     <div class="nav-links">
       <a href="#about">About</a>
-      <a href="#pricing">Services</a>
+      <a href="/services.html">Services</a>
       <a href="#portfolio">Portfolio</a>
       <a href="#pricing">Pricing</a>
     </div>
     <a href="https://www.upwork.com/freelancers/latifurrahmanbappy" target="_blank" rel="noopener" class="nav-cta">Hire on Upwork</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" type="button">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#about">About</a>
+  <a href="/services.html">Services</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#pricing">Pricing</a>
+  <a href="https://www.upwork.com/freelancers/latifurrahmanbappy" target="_blank" rel="noopener">Hire on Upwork</a>
+  <a href="https://wa.me/8801316918298" target="_blank" rel="noopener">WhatsApp</a>
+</div>
 
 <main id="top">
 
@@ -796,7 +827,7 @@ footer{background:var(--forest); color:var(--cream-dim); border-top:1px solid rg
     <div class="footer-row">
       <span>© 2026 upworkmanager.com — Podcast growth, ranking &amp; SEO.</span>
       <div class="footer-links">
-        <a href="#pricing">Services</a>
+        <a href="/services.html">Services</a>
         <a href="#portfolio">Portfolio</a>
         <a href="mailto:hello@upworkmanager.com">Email</a>
       </div>
@@ -1124,6 +1155,20 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
+
+
+<script>
+(function(){
+  var btn=document.getElementById('menuBtn');
+  var nav=document.getElementById('mobileNav');
+  if(btn&&nav){
+    btn.addEventListener('click',function(){ nav.classList.toggle('open'); });
+    nav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click',function(){ nav.classList.remove('open'); });
+    });
+  }
+})();
+</script>
 
 </body>
 </html>
