@@ -187,7 +187,7 @@ header .wrap{display:flex; align-items:center; justify-content:space-between;}
 .hero h1 .word span{display:inline-block;}
 .hero h1 em{font-style:italic; color:var(--gold-bright); font-weight:400;}
 .hero-sub{
-  margin-top:36px; max-width:540px; font-size:1.08rem; line-height:1.75; color:var(--cream-dim); font-weight:300;
+  margin-top:36px; max-width:min(540px,100%); font-size:1.08rem; line-height:1.75; color:var(--cream-dim); font-weight:300;
 }
 .hero-actions{margin-top:50px; display:flex; gap:20px; flex-wrap:wrap; align-items:center;}
 .btn{
@@ -316,29 +316,6 @@ section{position:relative;}
 .bento-cell p{font-size:0.9rem; color:var(--ink-dim); line-height:1.6; font-weight:300;}
 @media (max-width:960px){ .bento-cell, .bento-cell.g-wide, .bento-cell.g-narrow{grid-column:span 6;} }
 
-/* ---------- Founder / About ---------- */
-.about-panel{background:var(--forest); color:var(--cream); padding:150px 0;}
-.about-grid{display:grid; grid-template-columns:0.8fr 1.2fr; gap:70px; align-items:center;}
-.about-panel .section-label{color:var(--gold-bright);}
-.about-panel .section-label::before{background:var(--gold-bright);}
-.about-quote{font-family:'Fraunces',serif; font-style:italic; font-size:clamp(1.5rem,2.6vw,2.1rem); line-height:1.5; color:var(--cream);}
-.about-name{margin-top:34px; font-family:'JetBrains Mono',monospace; font-size:0.86rem; color:var(--gold-bright);}
-.about-name span{display:block; color:var(--cream-dim); margin-top:4px; font-size:0.78rem;}
-.about-ring{width:220px; height:220px; border-radius:50%; border:1px solid rgba(245,239,226,0.2); display:flex; align-items:center; justify-content:center; margin:0 auto;}
-.about-initials{font-family:'Fraunces',serif; font-size:2.6rem; color:var(--gold-bright);}
-.about-specialties{display:flex; flex-wrap:wrap; gap:8px; margin-top:18px;}
-.about-specialties span{font-family:'JetBrains Mono',monospace; font-size:0.68rem; letter-spacing:0.04em; color:var(--cream); border:1px solid rgba(245,239,226,0.25); padding:6px 12px; border-radius:100px;}
-.cat-slide{padding:22px 0 6px; overflow:hidden;}
-.cat-slide-label{font-family:'JetBrains Mono',monospace; font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-bright); margin-bottom:12px; display:block;}
-.about-marquee{overflow:hidden; border-top:1px solid rgba(245,239,226,0.12); border-bottom:1px solid rgba(245,239,226,0.12); padding:14px 0; margin-bottom:10px;}
-.about-marquee-track{display:flex; width:max-content; gap:0; animation:marqueeScroll 32s linear infinite;}
-.about-marquee-track.slow{animation-duration:40s;}
-.about-m-item{display:flex; align-items:center; gap:10px; padding:0 28px; border-right:1px solid rgba(245,239,226,0.12); font-family:'Fraunces',serif; font-size:1rem; color:var(--cream); white-space:nowrap;}
-.about-m-item small{font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--gold-bright); letter-spacing:0.04em;}
-.about-m-item .dot{width:6px; height:6px; border-radius:50%; background:var(--gold-bright); flex-shrink:0;}
-
-
-
 /* ---------- Process ---------- */
 .process-list{margin-top:56px; border-top:1px solid var(--line);}
 .process-row{display:grid; grid-template-columns:80px 200px 1fr; gap:30px; padding:30px 0; border-bottom:1px solid var(--line); align-items:baseline; transition:padding-left 0.3s;}
@@ -462,13 +439,138 @@ footer{background:var(--forest); color:var(--cream-dim); border-top:1px solid rg
 @media (max-width:560px){ .footer-top{grid-template-columns:1fr;} }
 
 @media (max-width:860px){
-  .rank-cards, .about-grid{grid-template-columns:1fr;}
+  .rank-cards, 
   .price-row{grid-template-columns:1fr;}
   .section-pad{padding:100px 0;}
   .wrap{padding:0 24px;}
   .hero-stats{gap:20px;}
   .hero-stat{padding-right:0; margin-right:0; border-right:none; width:45%;}
 }
+
+/* About section fixes */
+
+
+.about-panel .section-label{color:var(--gold-bright);}
+.about-panel .section-label::before{background:var(--gold-bright);}
+
+
+.about-name span{display:block; color:var(--cream-dim); margin-top:6px; font-size:0.78rem; line-height:1.45; white-space:normal;}
+
+
+
+
+.about-marquee-track.slow{animation-duration:40s;}
+
+.about-m-item small{font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--gold-bright); letter-spacing:0.04em;}
+.about-m-item .dot{width:6px; height:6px; border-radius:50%; background:var(--gold-bright); flex-shrink:0;}
+
+.about-actions .btn{display:inline-flex; align-items:center; justify-content:center; padding:14px 22px; text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:0.74rem;}
+.about-actions .btn-fill{background:var(--gold-bright); color:var(--forest) !important; font-weight:500; border:none;}
+.about-actions .btn-line{border:1px solid rgba(245,239,226,0.35); color:var(--cream) !important; background:transparent;}
+.cat-slide-label{font-family:'JetBrains Mono',monospace; font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-bright); margin-bottom:12px; display:block;}
+
+/* ===== ABOUT (clean) ===== */
+.about-panel{
+  background:var(--forest);
+  color:var(--cream);
+  padding:120px 0 80px;
+  width:100%;
+  max-width:100%;
+  overflow:hidden;
+  box-sizing:border-box;
+}
+.about-panel .wrap{
+  width:min(900px, 92vw);
+  margin:0 auto;
+  box-sizing:border-box;
+}
+.about-top{display:flex; flex-direction:column; gap:20px;}
+.about-ring{
+  width:100px; height:100px; border-radius:50%;
+  border:1px solid rgba(245,239,226,0.25);
+  display:flex; align-items:center; justify-content:center;
+  margin:0 0 8px;
+}
+.about-initials{font-family:'Fraunces',serif; font-size:1.6rem; color:var(--gold-bright);}
+.about-panel .section-label{color:var(--gold-bright);}
+.about-panel .section-label::before{background:var(--gold-bright);}
+.about-title{
+  font-family:'Fraunces',serif; font-weight:400;
+  font-size:clamp(1.8rem, 6vw, 2.6rem);
+  color:var(--cream); line-height:1.15; margin:6px 0 12px;
+}
+.about-quote{
+  font-family:'Fraunces',serif; font-style:italic;
+  font-size:clamp(1.05rem, 3.5vw, 1.35rem);
+  line-height:1.45; color:var(--cream); margin-bottom:12px;
+}
+.about-body{
+  color:var(--cream-dim); font-weight:300;
+  font-size:0.92rem; line-height:1.65; margin-bottom:12px;
+}
+.about-name{
+  margin-top:18px; font-family:'JetBrains Mono',monospace;
+  font-size:0.88rem; color:var(--gold-bright);
+}
+.about-name span{
+  display:block; color:var(--cream-dim);
+  margin-top:6px; font-size:0.72rem; line-height:1.5;
+}
+.cat-slide-label{
+  font-family:'JetBrains Mono',monospace; font-size:0.65rem;
+  letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--gold-bright); margin:22px 0 10px; display:block;
+}
+.about-marquee{
+  overflow:hidden;
+  border-top:1px solid rgba(245,239,226,0.12);
+  border-bottom:1px solid rgba(245,239,226,0.12);
+  padding:12px 0; margin-bottom:6px;
+}
+.about-marquee-track{
+  display:flex; width:max-content;
+  animation:marqueeScroll 35s linear infinite;
+}
+.about-marquee-track.slow{animation-duration:42s;}
+.about-m-item{
+  display:flex; align-items:center; gap:8px;
+  padding:0 22px; border-right:1px solid rgba(245,239,226,0.12);
+  font-family:'Fraunces',serif; font-size:0.95rem;
+  color:var(--cream); white-space:nowrap; flex-shrink:0;
+}
+.about-m-item small{
+  font-family:'JetBrains Mono',monospace; font-size:0.6rem;
+  color:var(--gold-bright);
+}
+.about-m-item .dot{
+  width:6px; height:6px; border-radius:50%;
+  background:var(--gold-bright); flex-shrink:0;
+}
+.about-actions{
+  display:flex; flex-direction:column; gap:10px;
+  margin-top:24px; width:100%;
+}
+.about-actions a{
+  display:block; width:100%; box-sizing:border-box;
+  text-align:center; padding:14px 18px;
+  font-family:'JetBrains Mono',monospace; font-size:0.78rem;
+  text-decoration:none; border-radius:999px;
+}
+.about-actions a.fill{
+  background:var(--gold-bright); color:var(--forest); font-weight:500;
+}
+.about-actions a.line{
+  border:1px solid rgba(245,239,226,0.35); color:var(--cream);
+}
+@media (min-width:900px){
+  .about-panel{padding:140px 0 90px;}
+  .about-top{display:grid; grid-template-columns:140px 1fr; gap:48px; align-items:start;}
+  .about-ring{width:140px; height:140px; margin:0;}
+  .about-initials{font-size:2rem;}
+  .about-actions{flex-direction:row; flex-wrap:wrap;}
+  .about-actions a{width:auto; min-width:160px;}
+}
+
 </style>
 </head>
 <body>
@@ -696,20 +798,19 @@ footer{background:var(--forest); color:var(--cream-dim); border-top:1px solid rg
 
   <!-- ============ ABOUT / FOUNDER ============ -->
   <section class="about-panel" id="about">
-    <div class="wrap about-grid">
-      <div class="reveal">
-        <div class="about-ring"><span class="about-initials">LRB</span></div>
-      </div>
-      <div class="reveal">
-        <span class="section-label">Brand</span>
-        <h2 style="font-family:'Fraunces',serif; font-weight:400; font-size:clamp(2rem,4vw,2.8rem); color:var(--cream); line-height:1.15; margin:8px 0 16px;">Upwork Manager</h2>
-        <p class="about-quote" style="font-size:clamp(1.15rem,2vw,1.45rem);">Podcast ranking &amp; growth for shows that need chart credibility — Apple Podcasts and Spotify category movement, real download growth, and sponsor-ready metrics.</p>
-        <p style="margin-top:16px; color:var(--cream-dim); font-weight:300; font-size:0.95rem; line-height:1.7; max-width:540px;">We run focused campaigns: ranking signals, dual-platform growth, launch windows, cross-promotion, and collaboration. Built for business leaders, investors, experts, and course creators — not vanity spikes.</p>
+    <div class="wrap">
+      <div class="about-top">
+        <div>
+          <div class="about-ring"><span class="about-initials">LRB</span></div>
+        </div>
+        <div>
+          <span class="section-label">Brand</span>
+          <h2 class="about-title">Upwork Manager</h2>
+          <p class="about-quote">Podcast ranking &amp; growth for shows that need chart credibility — Apple Podcasts and Spotify category movement, real download growth, and sponsor-ready metrics.</p>
+          <p class="about-body">We run focused campaigns: ranking signals, dual-platform growth, launch windows, cross-promotion, and collaboration. Built for business leaders, investors, experts, and course creators — not vanity spikes.</p>
+          <div class="about-name">Latifur Rahman Bappy (LRB)<span>Founder, Upwork Manager · Top ~0.5% talent band · Podcast Ranking &amp; Growth Support</span></div>
+          <p class="about-body">You work directly with me on every campaign — strategy, ranking support, cross-promotion, and clear reporting. Markets: USA, UK, Canada, Australia &amp; global English-language shows.</p>
 
-        <div class="about-name" style="margin-top:28px;">Latifur Rahman Bappy (LRB)<span>Founder &amp; Principal Specialist · Top ~0.5% talent band · Podcast Ranking &amp; Growth Support</span></div>
-        <p style="margin-top:12px; color:var(--cream-dim); font-weight:300; font-size:0.9rem; line-height:1.65; max-width:520px;">You work directly with me on every campaign — strategy, ranking support, cross-promotion, and clear reporting. Markets: USA, UK, Canada, Australia &amp; global English-language shows.</p>
-
-        <div class="cat-slide" style="margin-top:26px;">
           <span class="cat-slide-label">Slide 01 · Categories we rank in</span>
           <div class="about-marquee">
             <div class="about-marquee-track">
@@ -727,9 +828,7 @@ footer{background:var(--forest); color:var(--cream-dim); border-top:1px solid rg
               <div class="about-m-item"><span class="dot"></span>AI &amp; Technology <small>Emerging</small></div>
             </div>
           </div>
-        </div>
 
-        <div class="cat-slide" style="margin-top:4px;">
           <span class="cat-slide-label">Slide 02 · What we deliver</span>
           <div class="about-marquee">
             <div class="about-marquee-track slow">
@@ -747,16 +846,17 @@ footer{background:var(--forest); color:var(--cream-dim); border-top:1px solid rg
               <div class="about-m-item"><span class="dot"></span>Sponsor-Ready <small>Metrics</small></div>
             </div>
           </div>
-        </div>
 
-        <div style="margin-top:28px; display:flex; gap:12px; flex-wrap:wrap;">
-          <a href="/services.html" class="btn btn-fill magnetic" data-magnetic>View services</a>
-          <a href="https://www.upwork.com/freelancers/latifurrahmanbappy" target="_blank" rel="noopener" class="btn btn-line magnetic" data-magnetic style="border-color:rgba(245,239,226,0.35); color:var(--cream);">Hire on Upwork</a>
-          <a href="https://wa.me/8801316918298" target="_blank" rel="noopener" class="btn btn-line magnetic" data-magnetic style="border-color:rgba(245,239,226,0.35); color:var(--cream);">WhatsApp</a>
+          <div class="about-actions">
+            <a class="fill" href="/services.html">View services</a>
+            <a class="line" href="https://www.upwork.com/freelancers/latifurrahmanbappy" target="_blank" rel="noopener">Hire on Upwork</a>
+            <a class="line" href="https://wa.me/8801316918298" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
 
   <!-- ============ PROCESS ============ -->
   <section class="section-pad" id="process">
